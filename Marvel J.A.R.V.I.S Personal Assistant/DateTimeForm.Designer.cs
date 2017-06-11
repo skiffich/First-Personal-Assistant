@@ -45,9 +45,10 @@
             this.labeltime2.BackColor = System.Drawing.Color.Transparent;
             this.labeltime2.Font = new System.Drawing.Font("Impact", 24F);
             this.labeltime2.ForeColor = System.Drawing.Color.White;
-            this.labeltime2.Location = new System.Drawing.Point(230, 84);
+            this.labeltime2.Location = new System.Drawing.Point(172, 68);
+            this.labeltime2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labeltime2.Name = "labeltime2";
-            this.labeltime2.Size = new System.Drawing.Size(69, 48);
+            this.labeltime2.Size = new System.Drawing.Size(56, 39);
             this.labeltime2.TabIndex = 26;
             this.labeltime2.Text = "PM";
             // 
@@ -57,11 +58,15 @@
             this.labeltime.BackColor = System.Drawing.Color.Transparent;
             this.labeltime.Font = new System.Drawing.Font("Impact", 24F);
             this.labeltime.ForeColor = System.Drawing.Color.White;
-            this.labeltime.Location = new System.Drawing.Point(63, 84);
+            this.labeltime.Location = new System.Drawing.Point(47, 68);
+            this.labeltime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labeltime.Name = "labeltime";
-            this.labeltime.Size = new System.Drawing.Size(161, 48);
+            this.labeltime.Size = new System.Drawing.Size(130, 39);
             this.labeltime.TabIndex = 25;
             this.labeltime.Text = "02:00:00";
+            this.labeltime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.labeltime.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.labeltime.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // labelmonth
             // 
@@ -69,9 +74,10 @@
             this.labelmonth.BackColor = System.Drawing.Color.Transparent;
             this.labelmonth.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelmonth.ForeColor = System.Drawing.Color.White;
-            this.labelmonth.Location = new System.Drawing.Point(190, 25);
+            this.labelmonth.Location = new System.Drawing.Point(142, 20);
+            this.labelmonth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelmonth.Name = "labelmonth";
-            this.labelmonth.Size = new System.Drawing.Size(130, 48);
+            this.labelmonth.Size = new System.Drawing.Size(106, 39);
             this.labelmonth.TabIndex = 24;
             this.labelmonth.Text = "Month ";
             // 
@@ -81,9 +87,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(38, 25);
+            this.label1.Location = new System.Drawing.Point(28, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 48);
+            this.label1.Size = new System.Drawing.Size(118, 39);
             this.label1.TabIndex = 23;
             this.label1.Text = "Month : ";
             // 
@@ -96,8 +103,9 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(374, 162);
+            this.pictureBox1.Size = new System.Drawing.Size(280, 132);
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -106,10 +114,10 @@
             // 
             // DateTimeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(374, 162);
+            this.ClientSize = new System.Drawing.Size(280, 132);
             this.Controls.Add(this.labeltime2);
             this.Controls.Add(this.labeltime);
             this.Controls.Add(this.labelmonth);
@@ -118,6 +126,7 @@
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DateTimeForm";
             this.Opacity = 0.7D;
             this.Text = "DateTime";
