@@ -18,6 +18,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
         public MJLeftMenu()
         {
             InitializeComponent();
+            this.SetDesktopLocation(200, 100);
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -92,6 +93,11 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
             Commandlist cl = new Commandlist();
             cl.Show();
             cl.TopMost = true;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

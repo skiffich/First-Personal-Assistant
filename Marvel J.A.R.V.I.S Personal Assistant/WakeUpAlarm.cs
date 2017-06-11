@@ -61,6 +61,15 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 Marvel.SpeakAsync("");
             }
         }
+
+        internal HtmlToText HtmlToText
+        {
+            get => default(HtmlToText);
+            set
+            {
+            }
+        }
+
         private SpeechRecognitionEngine createSpeechEngine(string preferredCulture)
         {
             foreach (RecognizerInfo config in SpeechRecognitionEngine.InstalledRecognizers())

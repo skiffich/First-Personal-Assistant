@@ -18,6 +18,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
         public DateTimeForm()
         {
             InitializeComponent();
+            this.SetDesktopLocation(450, 100);
         }
 
         private void datetimer_Tick(object sender, EventArgs e)

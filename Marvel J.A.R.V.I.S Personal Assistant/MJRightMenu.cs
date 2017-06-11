@@ -18,6 +18,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
         public MJRightMenu()
         {
             InitializeComponent();
+            this.SetDesktopLocation(800, 100);
         }
 
         private void panel1_MouseUp(object sender, MouseEventArgs e)
@@ -76,7 +77,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
             }
             catch (Exception)
             {
-                
+
             }
         }
 

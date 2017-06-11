@@ -972,8 +972,8 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            JarvisMenu jm = new JarvisMenu();
-            jm.Show();
+            //JarvisMenu jm = new JarvisMenu();
+            //jm.Show();
             MJLeftMenu mjlm = new MJLeftMenu();
             mjlm.Show();
             MJRightMenu mjrm = new MJRightMenu();

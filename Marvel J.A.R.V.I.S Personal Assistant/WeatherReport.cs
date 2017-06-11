@@ -78,15 +78,15 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
 
                 // load dictionary
                 loadGrammarAndCommands();
-                if (cbVoice.Text != "IVONA 2 Brian OEM")
-                {
-                    cbVoice.SelectedItem = "IVONA 2 Brian OEM";
-                    Marvel.SelectVoice("IVONA 2 Brian OEM");
-                }
-                else
+                if (cbVoice.Text != "Microsoft David Desktop")
                 {
                     cbVoice.SelectedItem = "Microsoft David Desktop";
                     Marvel.SelectVoice("Microsoft David Desktop");
+                }
+                else
+                {
+                    cbVoice.SelectedItem = "Microsoft Zira Desktop";
+                    Marvel.SelectVoice("Microsoft Zira Desktop");
                 }
             }
             catch (Exception)
@@ -140,12 +140,16 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 Marvel.SpeakAsync("Please check the " + speech + "weather command on line " + i + ". It appears to be missing a proper response or web key words");
             }
         }
+
+        private string[] lines;
+
         private void loadGrammarAndCommands()
         {
             Choices texts = new Choices();
-            string[] lines = File.ReadAllLines(Environment.CurrentDirectory + "\\weathercommands.txt");
+            lines = File.ReadAllLines(Environment.CurrentDirectory + "\\citynamelist.txt");
             // add the text to the known choices of speechengine
             texts.Add(lines);
+
             Grammar wordsList = new Grammar(new GrammarBuilder(texts));
             speechRecognitionEngine.LoadGrammar(wordsList);
             try
@@ -158,6 +162,26 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 Marvel.SpeakAsync("I've detected an in valid entry in your weather commands, possibly a blank line. web commands will cease to work until it is fixed.");
             }
         }
+        private void UnloadGrammarAndCommands()
+        {
+            Choices texts = new Choices();
+            lines = File.ReadAllLines(Environment.CurrentDirectory + "\\citynamelist.txt");
+            // add the text to the known choices of speechengine
+            texts.Add(lines);
+
+            Grammar wordsList = new Grammar(new GrammarBuilder(texts));
+            speechRecognitionEngine.LoadGrammar(wordsList);
+            try
+            {
+                Weathergrammar = new Grammar(new GrammarBuilder(new Choices(ArrayWeatherCommands)));
+                speechRecognitionEngine.UnloadGrammar(Weathergrammar);
+            }
+            catch (Exception ex)
+            {
+                Marvel.SpeakAsync("I've detected an in valid entry in your weather commands, possibly a blank line. web commands will cease to work until it is fixed.");
+            }
+        }
+
         #region speechEngine events
         /// <summary>
         /// Handles the SpeechRecognized event of the engine control.
@@ -168,10 +192,15 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
         {
             //scvText.ScrollToEnd();
             string speech = (e.Result.Text);
+
+            Marvel.SpeakAsyncCancelAll();
+
             switch (speech)
             {
                 //Get weather report
                 case "get weather report":
+                case "what is the weather today":
+                case "what is the weather":
                     Marvel.Speak("ok master, before your get with weather report");
                     Marvel.Speak("if your city name is in my directory, city name list, then i will search for you ");
                     Marvel.Speak("if it is not in my directory then type it on text box and press get weather report button, ");
@@ -200,6 +229,16 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 case "stop":
                     Marvel.Pause();
                     break;
+                case "close weather report":
+                case "close this":
+                    UnloadGrammarAndCommands();
+                    closebtn.PerformClick();
+                    break;
+                default:
+                    inputtxt.Text = speech;
+                    yahooweatherbtn.PerformClick();
+                    break;
+
             }
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -215,7 +254,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
             //string put = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='athens, gr')&format=xml&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
             //string output = put.Replace("city", inputtxt.Text);
             //Console.WriteLine(output);
-            String query = String.Format("https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='city, state')&format=xml&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys");
+            String query = String.Format("https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places where text='city') and u='c'&format=xml");
 
             String lines;
             //Pass the file path and file name to the StreamReader constructor
@@ -249,6 +288,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 humidity = channel.SelectSingleNode("yweather:atmosphere", manager).Attributes["humidity"].Value;
 
                 windspeed = channel.SelectSingleNode("yweather:wind", manager).Attributes["chill"].Value;
+                windspeed = windspeed.Insert(humidity.Length - 1, ",");
 
                 sunrise = channel.SelectSingleNode("yweather:astronomy", manager).Attributes["sunrise"].Value;
 
@@ -328,6 +368,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
             else
             {
                 Marvel.Speak("Please wait");
+                Marvel.Speak("ok ready, tell me your city name");
                 //computer.SelectVoice("IVONA 2 Brian OEM");
             }
         }
@@ -354,6 +395,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
             }
             finally
             {
+                Marvel.Resume();
                 Marvel.Speak("");
             }
             temptxt.Text = "The temperature is :" + GetWeather("temp");

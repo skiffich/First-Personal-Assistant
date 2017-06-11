@@ -57,11 +57,11 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                     Marvel.SpeakAsyncCancelAll();
                 foreach (InstalledVoice voice in Marvel.GetInstalledVoices())
                 {
-                    cbVoice.Items.Add(voice.VoiceInfo.Name);
-                    if (cbVoice.Text != "IVONA 2 Brian OEM")
+                    cbVoice.Items.Add(voice.VoiceInfo.Name.ToString());
+                    if (cbVoice.Text != "Microsoft Zira Desktop")
                     {
-                        cbVoice.SelectedItem = "IVONA 2 Brian OEM";
-                        Marvel.SelectVoice("IVONA 2 Brian OEM");
+                        cbVoice.SelectedItem = "Microsoft Zira Desktop";
+                        Marvel.SelectVoice("Microsoft Zira Desktop");
                     }
                     else
                     {

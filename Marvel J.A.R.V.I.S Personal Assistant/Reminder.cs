@@ -7609,7 +7609,8 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 StreamReader sr = new StreamReader(Environment.CurrentDirectory + "\\name.txt");
                 //Read the first line of text
                 lines = sr.ReadLine();
-                if (time_n.Text != "PM")
+
+                if (time_n.Text.Contains("AM"))
                 {
                     spokentxt.Text = "Good morning, " + lines;
                     Marvel.SpeakAsync(spokentxt.Text);
@@ -7842,6 +7843,14 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
             if (Top == 1)
             {
                 this.SetDesktopLocation(MousePosition.X - MoveX, MousePosition.Y - MoveY);
+            }
+        }
+
+        public WakeUpAlarm WakeUpAlarm
+        {
+            get => default(WakeUpAlarm);
+            set
+            {
             }
         }
     }

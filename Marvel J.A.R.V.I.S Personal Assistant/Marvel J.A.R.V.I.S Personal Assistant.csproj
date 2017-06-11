@@ -88,12 +88,6 @@
     </Compile>
     <Compile Include="Emails.cs" />
     <Compile Include="HtmlToText.cs" />
-    <Compile Include="JarvisMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="JarvisMenu.Designer.cs">
-      <DependentUpon>JarvisMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="MailReader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,9 +193,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DateTimeForm.resx">
       <DependentUpon>DateTimeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="JarvisMenu.resx">
-      <DependentUpon>JarvisMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MailReader.resx">
       <DependentUpon>MailReader.cs</DependentUpon>
