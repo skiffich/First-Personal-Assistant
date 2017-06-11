@@ -235,10 +235,10 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 foreach (InstalledVoice voice in Marvel.GetInstalledVoices())
                 {
                     cbVoice.Items.Add(voice.VoiceInfo.Name.ToString());
-                    if (cbVoice.Text != "IVONA 2 Brian OEM")
+                    if (cbVoice.Text != "Microsoft Zira Desktop")
                     {
-                        cbVoice.SelectedItem = "IVONA 2 Brian OEM";
-                        Marvel.SelectVoice("IVONA 2 Brian OEM");
+                        cbVoice.SelectedItem = "Microsoft Zira Desktop";
+                        Marvel.SelectVoice("Microsoft Zira Desktop");
                     }
                     else
                     {
@@ -812,6 +812,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                     break;
             }
         }
+
         private void update()
         {
             Marvel.SpeakAsync("This may take a few seconds");
