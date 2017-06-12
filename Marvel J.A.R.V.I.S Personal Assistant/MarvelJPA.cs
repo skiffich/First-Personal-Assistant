@@ -359,13 +359,17 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                         StreamReader sr = new StreamReader(@"C:\Users\" + userName + "\\Documents\\Jarvis Custom Commands\\name.txt");
                         //Read the first line of text
                         line = sr.ReadLine();
-                        if (ranNum < 6)
+                        if (ranNum < 3)
                         {
                             Marvel.SpeakAsync("Hello sir, " + line);
                         }
-                        else if (ranNum > 5)
+                        else if (ranNum > 7)
                         {
                             Marvel.SpeakAsync("Hey, " + line);
+                        }
+                        else
+                        {
+                            Marvel.SpeakAsync("Yo nigga, whats up ");
                         }
                         //Continue to read until you reach end of file
                         while (line != null)
@@ -408,46 +412,11 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                     HeyJarvis();
                     break;
                 case "change voice to brian":
-                    if (cbVoice.Text != "IVONA 2 Brian OEM")
-                    {
-                        Marvel.SelectVoice("IVONA 2 Brian OEM");
-                        Marvel.Speak("Here is Ivona, Brian at, your service master");
-                    }
-                    else
+                    if (cbVoice.Text != "Microsoft David Desktop")
                     {
                         cbVoice.SelectedItem = "Microsoft David Desktop";
                         Marvel.SelectVoice("Microsoft David Desktop");
                         Marvel.Speak("Here is Microsoft David Desktop at, your service master ivona brian, voice is not installed");
-                    }
-                    HeyJarvis();
-                    break;
-                case "change voice to salli":
-                    if (cbVoice.Text != "IVONA 2 Salli OEM")
-                    {
-                        cbVoice.SelectedItem = "IVONA 2 Salli OEM";
-                        Marvel.SelectVoice("IVONA 2 Salli OEM");
-                        Marvel.Speak("Here is Ivona, IVONA, Salli at, your service master");
-                    }
-                    else
-                    {
-                        cbVoice.SelectedItem = "Microsoft Zira Desktop";
-                        Marvel.SelectVoice("Microsoft Zira Desktop");
-                        Marvel.Speak("Here is Microsoft Zira Desktop at, your service master IVONA 2 Salli, voice is not installed in your computer");
-                    }
-                    HeyJarvis();
-                    break;
-                case "change voice to amy":
-                    if (cbVoice.Text != "IVONA 2 Amy OEM")
-                    {
-                        cbVoice.SelectedItem = "IVONA 2 Amy OEM";
-                        Marvel.SelectVoice("IVONA 2 Amy OEM");
-                        Marvel.Speak("Here is IVONA 2 Amy at, your service master");
-                    }
-                    else
-                    {
-                        cbVoice.SelectedItem = "Microsoft Zira Desktop";
-                        Marvel.SelectVoice("Microsoft Zira Desktop");
-                        Marvel.Speak("Here is Microsoft Zira Desktop at, your service master IVONA 2 Salli, voice is not installed in your computer");
                     }
                     HeyJarvis();
                     break;
@@ -534,7 +503,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                     HeyJarvis();
                     break;
                 case "who is your creator":
-                    Marvel.SpeakAsync("Mr, saleem raza he created me with c sharp programming language, now he is working on my face and, speaker recognition project");
+                    Marvel.SpeakAsync("Mister, Dima Petrenko he created me with c sharp programming language for diploma, now he is working on my face and, speaker recognition project");
                     HeyJarvis();
                     break;
                 case "add my name":
@@ -581,10 +550,11 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 case "tell me about the weather":
                 case "what is the weather today":
                     Marvel.SpeakAsync("My pleasure loading weather report");
-                    HeyJarvis();
+                    UnloadGrammarAndCommands();
                     WeatherReport wreport = new WeatherReport();
                     wreport.Show();
                     wreport.TopMost = true;
+                    loadGrammarAndCommands();
                     break;
                 case "check internet status":
                     Marvel.SpeakAsync("Your are now, " + checkinternet + " to internet");
@@ -725,13 +695,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                     tdn.TopMost = true;
                     break;
                 case "activate to male version":
-                    if (cbVoice.Text != "IVONA 2 Brian OEM")
-                    {
-                        cbVoice.SelectedItem = "IVONA 2 Brian OEM";
-                        Marvel.SelectVoice("IVONA 2 Brian OEM");
-                        Marvel.SpeakAsync("ok, if this is your wish, than your wish, is my command, here is IVONA, Brian ");
-                    }
-                    else
+                    if (cbVoice.Text != "Microsoft David Desktop")
                     {
                         cbVoice.SelectedItem = "Microsoft David Desktop";
                         Marvel.SelectVoice("Microsoft David Desktop");
@@ -740,13 +704,7 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                     HeyJarvis();
                     break;
                 case "activate to female version":
-                    if (cbVoice.Text != "IVONA 2 Salli OEM")
-                    {
-                        cbVoice.SelectedItem = "IVONA 2 Salli OEM";
-                        Marvel.SelectVoice("IVONA 2 Salli OEM");
-                        Marvel.SpeakAsync("ok, here is IVONA, Salli what else you are, expecting, right now master");
-                    }
-                    else
+                    if (cbVoice.Text != "Microsoft Zira Desktop")
                     {
                         cbVoice.SelectedItem = "Microsoft Zira Desktop";
                         Marvel.SelectVoice("Microsoft Zira Desktop");
@@ -767,7 +725,9 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                 case "can we talk":
                 case "start conversation mode":
                     try
-                    { socialcommandgrammar = new Grammar(new GrammarBuilder(new Choices(ArraySocialCommands))); speechRecognitionEngine.LoadGrammar(socialcommandgrammar); }
+                    {
+                        socialcommandgrammar = new Grammar(new GrammarBuilder(new Choices(ArraySocialCommands))); speechRecognitionEngine.LoadGrammar(socialcommandgrammar);
+                    }
                     catch
                     { Marvel.SpeakAsync("I've detected an in valid entry in your social commands, possibly a blank line. Social commands will cease to work until it is fixed."); }
                     speechRecognitionEngine.UnloadGrammar(socialcommandgrammar);
@@ -797,8 +757,8 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
                     rm.TopMost = true;
                     HeyJarvis();
                     break;
-                case "stop":
-                case "stop talking":
+                //case "stop":
+                case "stop talking and resume":
                     if (Marvel.State == SynthesizerState.Paused)
                         Marvel.Resume();
                     Marvel.SpeakAsyncCancelAll();
@@ -882,6 +842,8 @@ namespace Marvel_J.A.R.V.I.S_Personal_Assistant
         {
             speechRecognitionEngine.UnloadAllGrammars();
             UnloadGrammarAndCommands();
+
+            loadGrammarAndCommands();
 
         }
         private void loadGrammarAndCommands()
